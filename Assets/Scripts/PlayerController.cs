@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private bool hasStarted, inputEnabled;
     [HideInInspector]public GameObject rampObject;
 
+    public int ZForce = 2;
+
     private Vector3 mousestartpos;
     private Vector3 mousecurrentpos;
     public Vector3 dragDirection;
@@ -53,7 +55,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.onRamp:
                 playerRigidBody.AddForce(0, 0.43f, 1, ForceMode.VelocityChange);
                 speed += 4;
-                StartCoroutine(IncreaseSpeedForFewSeconds());
+                StartCoroutine(DecreaseSpeedAfterFewSeconds());
                 PLAYERSTATE = PlayerState.Jump;
                 break;
             case PlayerState.Fall:
@@ -285,9 +287,9 @@ public class PlayerController : MonoBehaviour
     {
         if(other.tag == "SpeedBoost")
         {
-            speed += 3;
-            StartCoroutine(IncreaseSpeedForFewSeconds());
-            playerRigidBody.useGravity = false;
+            ZForce += 7;
+            StartCoroutine(CoolDown());
+            //playerRigidBody.useGravity = false;
             //Destroy(other.gameObject);
         }
         if(other.tag == "Eagleflying")
@@ -298,17 +300,21 @@ public class PlayerController : MonoBehaviour
             SpawnedEagle.SetActive(true);
         }
     }
-    IEnumerator IncreaseSpeedForFewSeconds()
+    IEnumerator DecreaseSpeedAfterFewSeconds()
     {
-        
-        yield return new WaitForSecondsRealtime(2);
-        speed -= 3;
+        yield return new WaitForSecondsRealtime(0.3f);
+        speed -= 4;
+    }
+    IEnumerator CoolDown()
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
+        ZForce -= 7;
     }
 
     IEnumerator PlayerFall()
     {
-        yield return new WaitForSeconds(0.5f);
-        playerRigidBody.velocity = new Vector3(0, -6f, 2);
+        yield return null;
+        playerRigidBody.velocity = new Vector3(0, -4f, ZForce);
         playerRigidBody.AddForce(playerRigidBody.velocity, ForceMode.VelocityChange);
     }
 
