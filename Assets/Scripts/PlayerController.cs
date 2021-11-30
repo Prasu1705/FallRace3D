@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Jump:
                 if (transform.position.z > rampObject.transform.position.z)
                 {
-                    playerRigidBody.velocity = new Vector3(0, 2.5f, 2);
+                    playerRigidBody.velocity = new Vector3(0, 2.5f, 4);
                     playerRigidBody.AddForce(playerRigidBody.velocity, ForceMode.VelocityChange);
                     PLAYERSTATE = PlayerState.Fall;
                 }
@@ -268,7 +268,7 @@ public class PlayerController : MonoBehaviour
 
             //playerRigidBody.isKinematic = false;
 
-            playerRigidBody.AddForce(0, 0.43f, 1, ForceMode.VelocityChange);
+            playerRigidBody.AddForce(0, 3f, 0.73f, ForceMode.VelocityChange);
 
 
         }
