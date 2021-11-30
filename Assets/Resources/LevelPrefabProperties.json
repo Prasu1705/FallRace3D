@@ -1,0 +1,244 @@
+{
+	"Level 1":[
+		{
+			"Platforms":[
+				{
+					"id" : 0,
+					"name" : "Platform1",
+					"XPos" : 13.01,
+					"YPos" : 4.01,
+					"ZPos" : -9.20,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1,
+					"YScale" : 3,
+					"ZScale" : 3
+				},
+				{
+					"id" : 1,
+					"name" : "Platform2",
+					"XPos" : 13.01,
+					"YPos" : 4.01,
+					"ZPos" : 11.40,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1,
+					"YScale" : 3,
+					"ZScale" : 3
+				},
+				{
+					"id" : 2,
+					"name" : "Platform3",
+					"XPos" : 13.01,
+					"YPos" : 7.01,
+					"ZPos" : -9.20,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1,
+					"YScale" : 3,
+					"ZScale" : 3
+				}
+			]
+		},
+		{
+			"SmallRamp":[
+				{
+					"id" : 0,
+					"name" : "SmallRamp1",
+					"XPos" : 13.01,
+					"YPos" : 25.01,
+					"ZPos" : -22.01,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1,
+					"YScale" : 3,
+					"ZScale" : 3
+				},
+				{
+					"id" : 1,
+					"name" : "SmallRamp2",
+					"XPos" : 13.01,
+					"YPos" : 25.01,
+					"ZPos" : -22.01,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1,
+					"YScale" : 3,
+					"ZScale" : 3
+				}
+
+			]
+		},
+		{
+			"SpeedUp":[
+				{
+					"id" : 0,
+					"name" : "SpeedUp1",
+					"XPos" : 13.01,
+					"YPos" : 25.01,
+					"ZPos" : -22.01,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1,
+					"YScale" : 3,
+					"ZScale" : 3
+				},
+				{
+					"id" : 1,
+					"name" : "SpeedUp2",
+					"XPos" : 13.01,
+					"YPos" : 25.01,
+					"ZPos" : -22.01,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1,
+					"YScale" : 3,
+					"ZScale" : 3
+				}
+
+			]
+		},
+		{
+			"MediumRamp":[
+				{
+					"id" : 0,
+					"name" : "MediumRamp1",
+					"XPos" : 12.58,
+					"YPos" : 3.01,
+					"ZPos" : 5.01,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 4,
+					"YScale" : 1,
+					"ZScale" : 5
+				},
+				{
+					"id" : 1,
+					"name" : "MediumRamp2",
+					"XPos" : 12.58,
+					"YPos" : 3.01,
+					"ZPos" : 5.01,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 4,
+					"YScale" : 1,
+					"ZScale" : 5
+				},
+				{
+					"id" : 2,
+					"name" : "MediumRamp3",
+					"XPos" : 12.58,
+					"YPos" : 3.01,
+					"ZPos" : 5.01,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 4,
+					"YScale" : 1,
+					"ZScale" : 5
+				},
+				{
+					"id" : 3,
+					"name" : "MediumRamp4",
+					"XPos" : 12.58,
+					"YPos" : 3.01,
+					"ZPos" : 5.01,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 4,
+					"YScale" : 1,
+					"ZScale" : 5
+				},
+			]
+		}
+	],
+	"Level 2":[
+		{
+			"Cube":[
+				{
+					"id" : 0,
+					"name" : "cube1",
+					"XPos" : 13.01,
+					"YPos" : 8.01,
+					"ZPos" : -1.08,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1,
+					"YScale" : 3,
+					"ZScale" : 3
+				},
+				{
+					"id" : 1,
+					"name" : "cube2",
+					"XPos" : 13.01,
+					"YPos" : 4.01,
+					"ZPos" : 14.01,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1,
+					"YScale" : 3,
+					"ZScale" : 3
+				},
+				{
+					"id" : 2,
+					"name" : "cube3",
+					"XPos" : 13.01,
+					"YPos" : 11.01,
+					"ZPos" : -1.08,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1,
+					"YScale" : 3,
+					"ZScale" : 3
+				}
+			]
+		},
+		{
+			"Sphere":[
+				{
+					"id" : 0,
+					"name" : "Sphere1",
+					"XPos" : 13.01,
+					"YPos" : 10.01,
+					"ZPos" : -17.01,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1,
+					"YScale" : 3,
+					"ZScale" : 3
+				}
+			]
+		},
+		{
+			"GameOverObstacle":[
+				{
+					"id" : 0,
+					"name" : "GameOverObstacle1",
+					"XPos" : 12.58,
+					"YPos" : 3.01,
+					"ZPos" : -1.08,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 4,
+					"YScale" : 1,
+					"ZScale" : 5
+				}
+			]
+		}
+	]
+}
