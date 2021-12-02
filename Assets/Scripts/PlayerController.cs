@@ -54,8 +54,8 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.onRamp:
                 playerRigidBody.AddForce(0, 0.43f, 1, ForceMode.VelocityChange);
-                speed += 4;
-                StartCoroutine(DecreaseSpeedAfterFewSeconds());
+                //speed += 4;
+                //StartCoroutine(DecreaseSpeedAfterFewSeconds());
                 PLAYERSTATE = PlayerState.Jump;
                 break;
             case PlayerState.Fall:
@@ -270,7 +270,7 @@ public class PlayerController : MonoBehaviour
 
             //playerRigidBody.isKinematic = false;
 
-            playerRigidBody.AddForce(0, 3f, 0.73f, ForceMode.VelocityChange);
+            playerRigidBody.AddForce(0, 3f, 1f, ForceMode.VelocityChange);
 
 
         }
@@ -287,7 +287,7 @@ public class PlayerController : MonoBehaviour
     {
         if(other.tag == "SpeedBoost")
         {
-            ZForce += 7;
+            ZForce += 10;
             StartCoroutine(CoolDown());
             //playerRigidBody.useGravity = false;
             //Destroy(other.gameObject);
@@ -300,15 +300,15 @@ public class PlayerController : MonoBehaviour
             SpawnedEagle.SetActive(true);
         }
     }
-    IEnumerator DecreaseSpeedAfterFewSeconds()
-    {
-        yield return new WaitForSecondsRealtime(0.3f);
-        speed -= 4;
-    }
+    //IEnumerator DecreaseSpeedAfterFewSeconds()
+    //{
+    //    yield return new WaitForSecondsRealtime(0.3f);
+    //    speed -= 4;
+    //}
     IEnumerator CoolDown()
     {
         yield return new WaitForSecondsRealtime(0.3f);
-        ZForce -= 7;
+        ZForce -= 10;
     }
 
     IEnumerator PlayerFall()

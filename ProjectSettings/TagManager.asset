@@ -11,6 +11,7 @@ TagManager:
   - SpeedBoost
   - Eagle
   - Eagleflying
+  - Platform
   layers:
   - Default
   - TransparentFX

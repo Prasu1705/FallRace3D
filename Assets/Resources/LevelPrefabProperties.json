@@ -1,175 +1,36 @@
 {
 	"Level 1":[
 		{
-			"Platform":[
-				{
-					"id" : 0,
-					"name" : "Platform1",
-					"XPos" : 0,
-					"YPos" : -4.6,
-					"ZPos" : 53.8,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 0.54,
-					"YScale" : 1,
-					"ZScale" : 5
-				},
-				{
-					"id" : 1,
-					"name" : "Platform2",
-					"XPos" : -6.8,
-					"YPos" : -7.9,
-					"ZPos" : 53.8,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 0.54,
-					"YScale" : 1,
-					"ZScale" : 5
-				},
-				{
-					"id" : 2,
-					"name" : "Platform3",
-					"XPos" : 0,
-					"YPos" : -15.8,
-					"ZPos" : 105.3,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 0.54,
-					"YScale" : 1,
-					"ZScale" : 5
-				},
-				{
-					"id" : 3,
-					"name" : "Platform4",
-					"XPos" : 5.5,
-					"YPos" : -26.6,
-					"ZPos" : 159,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 0.54,
-					"YScale" : 1,
-					"ZScale" : 5
-				},
-				{
-					"id" : 4,
-					"name" : "Platform5",
-					"XPos" : -3.6,
-					"YPos" : -33.1,
-					"ZPos" : 159,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 0.54,
-					"YScale" : 1,
-					"ZScale" : 5
-				},
-				{
-					"id" : 5,
-					"name" : "Platform6",
-					"XPos" : 3.2,
-					"YPos" : -39.4,
-					"ZPos" : 193.9,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 0.54,
-					"YScale" : 1,
-					"ZScale" : 5
-				}
-			]
-		},
-		{
-			"SmallRamp":[
-				{
-					"id" : 0,
-					"name" : "SmallRamp1",
-					"XPos" : -0.81,
-					"YPos" : 0,
-					"ZPos" : 25.551,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 1.02,
-					"YScale" : 0.4,
-					"ZScale" : 0.43
-				},
-				{
-					"id" : 1,
-					"name" : "SmallRamp2",
-					"XPos" : 0.2,
-					"YPos" : 0,
-					"ZPos" : 25.551,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 1,
-					"YScale" : 0.4,
-					"ZScale" : 0.43
-				},
-				{
-					"id" : 2,
-					"name" : "SmallRamp2",
-					"XPos" : 0.96,
-					"YPos" : 0,
-					"ZPos" : 25.551,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 1,
-					"YScale" : 0.4,
-					"ZScale" : 0.43
-				}
-			]
-		},
-		{
-			"SpeedUp":[
-				{
-					"id" : 0,
-					"name" : "SpeedUp1",
-					"XPos" : 13.01,
-					"YPos" : 25.01,
-					"ZPos" : -22.01,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 1,
-					"YScale" : 3,
-					"ZScale" : 3
-				},
-				{
-					"id" : 1,
-					"name" : "SpeedUp2",
-					"XPos" : 13.01,
-					"YPos" : 25.01,
-					"ZPos" : -22.01,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 1,
-					"YScale" : 3,
-					"ZScale" : 3
-				}
-
-			]
-		},
-		{
 			"EaglePower":[
 				{
 					"id" : 0,
 					"name" : "EaglePower",
-					"XPos" : 13.01,
-					"YPos" : 25.01,
-					"ZPos" : -22.01,
+					"XPos" : -7.45,
+					"YPos" : -6.15,
+					"ZPos" : 78.57,
 					"XRot" : 0,
 					"YRot" : 0,
 					"ZRot" : 0,
-					"XScale" : 1,
-					"YScale" : 3,
-					"ZScale" : 3
+					"XScale" : 1.00,
+					"YScale" : 3.00,
+					"ZScale" : 3.00
+				}
+			]
+		},
+		{
+			"FinishLine":[
+				{
+					"id" : 0,
+					"name" : "FinishLine",
+					"XPos" : 3.21,
+					"YPos" : -39.3,
+					"ZPos" : 211.49,
+					"XRot" : 90,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 5.00,
+					"YScale" : 1.00,
+					"ZScale" : 1.00
 				}
 			]
 		},
@@ -177,100 +38,256 @@
 			"MediumRamp":[
 				{
 					"id" : 0,
-					"name" : "MediumRamp1",
-					"XPos" : 12.58,
-					"YPos" : 3.01,
-					"ZPos" : 5.01,
+					"name" : "MediumRamp",
+					"XPos" : -2.01,
+					"YPos" : 0.00,
+					"ZPos" : 25.53,
 					"XRot" : 0,
 					"YRot" : 0,
 					"ZRot" : 0,
-					"XScale" : 4,
-					"YScale" : 1,
-					"ZScale" : 5
+					"XScale" : 1.40,
+					"YScale" : 0.73,
+					"ZScale" : 0.43
 				},
 				{
 					"id" : 1,
-					"name" : "MediumRamp2",
-					"XPos" : 12.58,
-					"YPos" : 3.01,
-					"ZPos" : 5.01,
+					"name" : "MediumRamp",
+					"XPos" : 1.95,
+					"YPos" : 0.00,
+					"ZPos" : 25.53,
 					"XRot" : 0,
 					"YRot" : 0,
 					"ZRot" : 0,
-					"XScale" : 4,
-					"YScale" : 1,
-					"ZScale" : 5
+					"XScale" : 1.40,
+					"YScale" : 0.73,
+					"ZScale" : 0.43
 				},
 				{
 					"id" : 2,
-					"name" : "MediumRamp3",
-					"XPos" : 12.58,
-					"YPos" : 3.01,
-					"ZPos" : 5.01,
+					"name" : "MediumRamp",
+					"XPos" : -4.73,
+					"YPos" : -33.09,
+					"ZPos" : 183.77,
 					"XRot" : 0,
 					"YRot" : 0,
 					"ZRot" : 0,
-					"XScale" : 4,
-					"YScale" : 1,
-					"ZScale" : 5
+					"XScale" : 1.40,
+					"YScale" : 0.73,
+					"ZScale" : 0.43
 				},
 				{
 					"id" : 3,
-					"name" : "MediumRamp4",
-					"XPos" : 12.58,
-					"YPos" : 3.01,
-					"ZPos" : 5.01,
+					"name" : "MediumRamp",
+					"XPos" : -3.36,
+					"YPos" : -33.09,
+					"ZPos" : 183.77,
 					"XRot" : 0,
 					"YRot" : 0,
 					"ZRot" : 0,
-					"XScale" : 4,
-					"YScale" : 1,
-					"ZScale" : 5
+					"XScale" : 1.40,
+					"YScale" : 0.73,
+					"ZScale" : 0.43
+				}
+			]
+		},
+		{
+			"Platform":[
+				{
+					"id" : 0,
+					"name" : "Platform",
+					"XPos" : 0.00,
+					"YPos" : -4.60,
+					"ZPos" : 53.80,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 0.54,
+					"YScale" : 1.00,
+					"ZScale" : 5.00
 				},
+				{
+					"id" : 1,
+					"name" : "Platform",
+					"XPos" : -6.80,
+					"YPos" : -7.90,
+					"ZPos" : 53.80,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 0.54,
+					"YScale" : 1.00,
+					"ZScale" : 5.00
+				},
+				{
+					"id" : 2,
+					"name" : "Platform",
+					"XPos" : 0.00,
+					"YPos" : -15.80,
+					"ZPos" : 105.30,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 0.54,
+					"YScale" : 1.00,
+					"ZScale" : 5.00
+				},
+				{
+					"id" : 3,
+					"name" : "Platform",
+					"XPos" : 5.50,
+					"YPos" : -26.60,
+					"ZPos" : 159.00,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 0.54,
+					"YScale" : 1.00,
+					"ZScale" : 5.00
+				},
+				{
+					"id" : 4,
+					"name" : "Platform",
+					"XPos" : -3.60,
+					"YPos" : -33.10,
+					"ZPos" : 159.00,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 0.54,
+					"YScale" : 1.00,
+					"ZScale" : 5.00
+				},
+				{
+					"id" : 5,
+					"name" : "Platform",
+					"XPos" : 3.20,
+					"YPos" : -39.40,
+					"ZPos" : 193.90,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 0.54,
+					"YScale" : 1.00,
+					"ZScale" : 5.00
+				}
+			]
+		},
+		{
+			"SmallRamp":[
+				{
+					"id" : 0,
+					"name" : "SmallRamp",
+					"XPos" : -0.81,
+					"YPos" : 0.00,
+					"ZPos" : 25.551,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1.02,
+					"YScale" : 0.40,
+					"ZScale" : 0.43
+				},
+				{
+					"id" : 1,
+					"name" : "SmallRamp",
+					"XPos" : 0.20,
+					"YPos" : 0.00,
+					"ZPos" : 25.551,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1.00,
+					"YScale" : 0.40,
+					"ZScale" : 0.43
+				},
+				{
+					"id" : 2,
+					"name" : "SmallRamp",
+					"XPos" : 0.96,
+					"YPos" : 0.00,
+					"ZPos" : 25.551,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1.00,
+					"YScale" : 0.40,
+					"ZScale" : 0.43
+				}
+			]
+		},
+		{
+			"SpeedPower":[
+				{
+					"id" : 0,
+					"name" : "SpeedPower",
+					"XPos" : 0.00,
+					"YPos" : -3.48,
+					"ZPos" : 78.62,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1.00,
+					"YScale" : 3.00,
+					"ZScale" : 3.00
+				},
+				{
+					"id" : 1,
+					"name" : "SpeedPower",
+					"XPos" : 0.66,
+					"YPos" : -14.23,
+					"ZPos" : 130.09,
+					"XRot" : 0,
+					"YRot" : 0,
+					"ZRot" : 0,
+					"XScale" : 1.00,
+					"YScale" : 3.00,
+					"ZScale" : 3.00
+				}
 			]
 		}
+		
 	],
 	"Level 2":[
 		{
 			"Platform":[
 				{
 					"id" : 0,
-					"name" : "Platform1",
+					"name" : "Platform",
 					"XPos" : 13.01,
 					"YPos" : 4.01,
 					"ZPos" : -9.20,
 					"XRot" : 0,
 					"YRot" : 0,
 					"ZRot" : 0,
-					"XScale" : 1,
-					"YScale" : 3,
-					"ZScale" : 3
+					"XScale" : 1.00,
+					"YScale" : 3.00,
+					"ZScale" : 3.00
 				},
 				{
 					"id" : 1,
-					"name" : "Platform2",
+					"name" : "Platform",
 					"XPos" : 13.01,
 					"YPos" : 4.01,
 					"ZPos" : 11.40,
 					"XRot" : 0,
 					"YRot" : 0,
 					"ZRot" : 0,
-					"XScale" : 1,
-					"YScale" : 3,
-					"ZScale" : 3
+					"XScale" : 1.00,
+					"YScale" : 3.00,
+					"ZScale" : 3.00
 				},
 				{
 					"id" : 2,
-					"name" : "Platform3",
+					"name" : "Platform",
 					"XPos" : 13.01,
 					"YPos" : 7.01,
 					"ZPos" : -9.20,
 					"XRot" : 0,
 					"YRot" : 0,
 					"ZRot" : 0,
-					"XScale" : 1,
-					"YScale" : 3,
-					"ZScale" : 3
+					"XScale" : 1.00,
+					"YScale" : 3.00,
+					"ZScale" : 3.00
 				}
 			]
 		},
@@ -278,62 +295,60 @@
 			"SmallRamp":[
 				{
 					"id" : 0,
-					"name" : "SmallRamp1",
+					"name" : "SmallRamp",
 					"XPos" : 13.01,
 					"YPos" : 25.01,
 					"ZPos" : -22.01,
 					"XRot" : 0,
 					"YRot" : 0,
 					"ZRot" : 0,
-					"XScale" : 1,
-					"YScale" : 3,
-					"ZScale" : 3
+					"XScale" : 1.00,
+					"YScale" : 3.00,
+					"ZScale" : 3.00
 				},
 				{
 					"id" : 1,
-					"name" : "SmallRamp2",
+					"name" : "SmallRamp",
 					"XPos" : 13.01,
 					"YPos" : 25.01,
 					"ZPos" : -22.01,
 					"XRot" : 0,
 					"YRot" : 0,
 					"ZRot" : 0,
-					"XScale" : 1,
-					"YScale" : 3,
-					"ZScale" : 3
+					"XScale" : 1.00,
+					"YScale" : 3.00,
+					"ZScale" : 3.00
 				}
-
 			]
 		},
 		{
 			"SpeedUp":[
 				{
 					"id" : 0,
-					"name" : "SpeedUp1",
+					"name" : "SpeedUp",
 					"XPos" : 13.01,
 					"YPos" : 25.01,
 					"ZPos" : -22.01,
 					"XRot" : 0,
 					"YRot" : 0,
 					"ZRot" : 0,
-					"XScale" : 1,
-					"YScale" : 3,
-					"ZScale" : 3
+					"XScale" : 1.00,
+					"YScale" : 3.00,
+					"ZScale" : 3.00
 				},
 				{
 					"id" : 1,
-					"name" : "SpeedUp2",
+					"name" : "SpeedUp",
 					"XPos" : 13.01,
 					"YPos" : 25.01,
 					"ZPos" : -22.01,
 					"XRot" : 0,
 					"YRot" : 0,
 					"ZRot" : 0,
-					"XScale" : 1,
-					"YScale" : 3,
-					"ZScale" : 3
+					"XScale" : 1.00,
+					"YScale" : 3.00,
+					"ZScale" : 3.00
 				}
-
 			]
 		},
 		{
@@ -347,67 +362,12 @@
 					"XRot" : 0,
 					"YRot" : 0,
 					"ZRot" : 0,
-					"XScale" : 1,
-					"YScale" : 3,
-					"ZScale" : 3
+					"XScale" : 1.00,
+					"YScale" : 3.00,
+					"ZScale" : 3.00
 				}
 			]
-		},
-		{
-			"MediumRamp":[
-				{
-					"id" : 0,
-					"name" : "MediumRamp1",
-					"XPos" : 12.58,
-					"YPos" : 3.01,
-					"ZPos" : 5.01,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 4,
-					"YScale" : 1,
-					"ZScale" : 5
-				},
-				{
-					"id" : 1,
-					"name" : "MediumRamp2",
-					"XPos" : 12.58,
-					"YPos" : 3.01,
-					"ZPos" : 5.01,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 4,
-					"YScale" : 1,
-					"ZScale" : 5
-				},
-				{
-					"id" : 2,
-					"name" : "MediumRamp3",
-					"XPos" : 12.58,
-					"YPos" : 3.01,
-					"ZPos" : 5.01,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 4,
-					"YScale" : 1,
-					"ZScale" : 5
-				},
-				{
-					"id" : 3,
-					"name" : "MediumRamp4",
-					"XPos" : 12.58,
-					"YPos" : 3.01,
-					"ZPos" : 5.01,
-					"XRot" : 0,
-					"YRot" : 0,
-					"ZRot" : 0,
-					"XScale" : 4,
-					"YScale" : 1,
-					"ZScale" : 5
-				},
-			]
 		}
+		
 	]
 }
