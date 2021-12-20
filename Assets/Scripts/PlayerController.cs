@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject player;
     public float horizontalDirection;
     public Rigidbody playerRigidBody;
     public float speed, moveSpeed;
     private bool hasStarted, inputEnabled;
     [HideInInspector]public GameObject rampObject;
+
+    public RaycastHit hit;
 
     public int ZForce = 2;
 
@@ -31,6 +34,8 @@ public class PlayerController : MonoBehaviour
     public GameObject eagleParent;
     public enum PlayerState {Running, Jump, onRamp, speedBoost, Fall};
     public PlayerState playerState;
+    public bool hitting;
+
     public PlayerState PLAYERSTATE { get { return playerState; } set { playerState = value; switchPlayerState(); } }
 
     private void switchPlayerState()
@@ -42,7 +47,7 @@ public class PlayerController : MonoBehaviour
                 p_falling = false;
                 break;
             case PlayerState.Jump:
-                if (transform.position.z > rampObject.transform.position.z)
+                if (player.transform.position.z > rampObject.transform.position.z)
                 {
                     playerRigidBody.velocity = new Vector3(0, 2.5f, 4);
                     playerRigidBody.AddForce(playerRigidBody.velocity, ForceMode.VelocityChange);
@@ -84,11 +89,12 @@ public class PlayerController : MonoBehaviour
     {
         InputManager.Instance.OnTap += OnTap;
         InputManager.Instance.OnHold += onHold;
-        yield return new WaitForSeconds(0f);
-        playerRigidBody = gameObject.GetComponent<Rigidbody>();
+        yield return null;
+        player = PlayerManager.Instance.playerObject;
+        playerRigidBody = player.GetComponent<Rigidbody>();
         //playerRigidBody.isKinematic = false;
         PLAYERSTATE = PlayerState.Running;
-       
+        
         playerAnimator.SetBool("Running", p_running);
         playerAnimator.SetBool("Falling", p_falling);
         hasStarted = true;
@@ -106,7 +112,7 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("Falling", p_falling);
             //playerAnimator.SetBool("Hanging", p_hanging);
 
-            transform.Translate(transform.forward * speed * Time.deltaTime);
+            player.transform.Translate(player.transform.forward * speed * Time.deltaTime);
             
         }
         if (p_falling)
@@ -117,15 +123,10 @@ public class PlayerController : MonoBehaviour
 
             //transform.Translate(-transform.up * speed * Time.deltaTime);
         }
-        //if (p_hanging)
-        //{
-        //    playerAnimator.SetBool("Falling", p_falling);
-        //    playerAnimator.SetBool("Running", p_running);
-        //    playerAnimator.SetBool("Hanging", p_hanging);
-        //    transform.Translate(transform.forward * speed * Time.deltaTime);
-        //    //transform.Translate(-transform.up * speed * Time.deltaTime);
-        //}
+        
 
+
+       
 
     }
 
@@ -133,7 +134,7 @@ public class PlayerController : MonoBehaviour
     {
         if(isHeld && inputEnabled)
         {
-           transform.position = new Vector3(GetMouseAsWorldPoint().x + mOffset.x * moveSpeed, transform.position.y, transform.position.z);
+           player.transform.position = new Vector3(GetMouseAsWorldPoint().x + mOffset.x * moveSpeed, player.transform.position.y, player.transform.position.z);
             
 
         }
@@ -142,9 +143,9 @@ public class PlayerController : MonoBehaviour
 
     void OnTap()
     {
-        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        mZCoord = Camera.main.WorldToScreenPoint(player.transform.position).z;
         // Store offset = gameobject world pos - mouse world pos
-        mOffset = gameObject.transform.position - GetMouseAsWorldPoint();
+        mOffset = player.transform.position - GetMouseAsWorldPoint();
 
     }
 
@@ -189,7 +190,7 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("Hanging", p_hanging);
             playerAnimator.SetBool("Running", p_running);
             eagleSpawnPoint.transform.localPosition = new Vector3(0, 4.63f, -0.12f);
-            playerRigidBody.velocity = new Vector3(0, 0.7f, 6);
+            playerRigidBody.velocity = new Vector3(0, 0.4f, 8);
             playerRigidBody.AddForce(playerRigidBody.velocity, ForceMode.VelocityChange);
             StartCoroutine(FallAfterFourSeconds());
 
@@ -198,7 +199,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator FallAfterFourSeconds()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         SpawnedEagle.SetActive(false);
         StartCoroutine(FallFromEagle());
     }
@@ -227,13 +228,7 @@ public class PlayerController : MonoBehaviour
         {
             PLAYERSTATE = PlayerState.Jump;
         }
-        //if(collision.collider.tag == "Eagle")
-        //{
-        //    eaglePrefab = collision.collider.gameObject;
-        //    eaglePrefab.SetActive(false);
-        //    //PLAYERSTATE = PlayerState.Fall;
-            
-        //}
+        
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -327,7 +322,18 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("Hanging", p_hanging);
         playerAnimator.SetBool("Running", p_running);
         playerAnimator.SetBool("Falling", p_falling);
-        playerRigidBody.velocity = new Vector3(0, -6f, 3);
+        playerRigidBody.velocity = new Vector3(0, -8f, 3);
         playerRigidBody.AddForce(playerRigidBody.velocity, ForceMode.VelocityChange);
     }
+
+    //IEnumerator CheckGameOver()
+    //{
+    //    yield return new WaitForSeconds(4f);
+    //    if (hitting == false && !p_hanging && p_falling)
+    //    {
+    //        Debug.Log("GameOver");
+    //        Time.timeScale = 0;
+    //    }
+        
+    //}
 }
