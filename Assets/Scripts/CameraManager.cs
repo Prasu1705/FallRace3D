@@ -15,6 +15,7 @@ public class CameraManager : MonoBehaviour
     public GameObject player;
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
+    public Vector3 initialPosition;
 
     public List<CinemachineVirtualCamera> vCams;
 
@@ -27,7 +28,10 @@ public class CameraManager : MonoBehaviour
         mainCamera = GetComponent<Camera>();
     }
 
-   
+    private void Start()
+    {
+        initialPosition = transform.position;
+    }
 
 
     public void ActivateCamera(int camera, Transform target = null, Transform followTarget = null)

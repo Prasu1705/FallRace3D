@@ -1684,7 +1684,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930783168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.06, y: -7.75, z: 54.44}
+  m_LocalPosition: {x: -6.06, y: -7.87, z: 52.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 148594406}
@@ -1894,7 +1894,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.21797745, y: 0, z: 0, w: 0.9759538}
-  m_LocalPosition: {x: -0.86, y: 1.3000001, z: -10.54}
+  m_LocalPosition: {x: 0.04, y: 1.3000001, z: -10.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1912,7 +1912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184e3c86bf64dcb408e5a007291274c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1392994799}
+  player: {fileID: 919132148378789935}
   smoothSpeed: 0.125
   offset: {x: 0, y: 1.12, z: -2}
   vCams: []
@@ -2297,6 +2297,7 @@ GameObject:
   - component: {fileID: 1392994802}
   - component: {fileID: 1392994801}
   - component: {fileID: 1392994800}
+  - component: {fileID: 1392994805}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Player
@@ -2386,6 +2387,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1392994805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392994799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23224f0224b840045b5ab651f42fa237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 1392994799}
+  horizontalDirection: 0
+  playerRigidBody: {fileID: 0}
+  speed: 0
+  moveSpeed: 0
+  rampObject: {fileID: 0}
+  ZForce: 2
+  dragDirection: {x: 0, y: 0, z: 0}
+  enemyAnimator: {fileID: 1392994803}
+  e_running: 0
+  e_falling: 0
+  enemyState: 0
+  hitting: 0
 --- !u!1 &1397985145
 GameObject:
   m_ObjectHideFlags: 0
@@ -2779,7 +2805,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722563309}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.75, y: -11.34, z: 94.35}
+  m_LocalPosition: {x: 0.75, y: -15.92, z: 94.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 148594406}
@@ -4313,7 +4339,7 @@ MonoBehaviour:
   speed: 8
   moveSpeed: 1
   rampObject: {fileID: 0}
-  ZForce: 2
+  ZForce: 4
   dragDirection: {x: 0, y: 0, z: 0}
   playerAnimator: {fileID: 5866666020538673391}
   p_running: 0
@@ -4325,6 +4351,9 @@ MonoBehaviour:
   eagleParent: {fileID: 0}
   playerState: 0
   hitting: 0
+  isLost: 0
+  isTransitioning: 0
+  isWon: 0
 --- !u!1 &8471895809117871597
 GameObject:
   m_ObjectHideFlags: 0

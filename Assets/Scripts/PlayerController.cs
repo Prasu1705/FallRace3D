@@ -36,6 +36,14 @@ public class PlayerController : MonoBehaviour
     public PlayerState playerState;
     public bool hitting;
 
+    private Vector3 intitalPosition;
+    private Quaternion initialRotation;
+
+    public bool isLost;
+    public bool isTransitioning;
+    public bool isRestarting;
+    public bool isWon;
+
     public PlayerState PLAYERSTATE { get { return playerState; } set { playerState = value; switchPlayerState(); } }
 
     private void switchPlayerState()
@@ -92,6 +100,8 @@ public class PlayerController : MonoBehaviour
         yield return null;
         player = PlayerManager.Instance.playerObject;
         playerRigidBody = player.GetComponent<Rigidbody>();
+        intitalPosition = player.transform.position;
+        initialRotation = player.transform.rotation;
         //playerRigidBody.isKinematic = false;
         PLAYERSTATE = PlayerState.Running;
         
@@ -163,37 +173,38 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.tag == "Ground")
+        switch(collision.collider.tag)
         {
-            //playerRigidBody.isKinematic = false;
-            PLAYERSTATE = PlayerState.Running;
-            
-            
-        }
-        if (collision.collider.tag == "Ramp Small" || collision.collider.tag == "Ramp Medium")
-        {
-            rampObject = collision.collider.gameObject;
-            PLAYERSTATE = PlayerState.Running;
+            case "Ground":
+                PLAYERSTATE = PlayerState.Running;
+                break;
+            case "Ramp Small":
+                rampObject = collision.collider.gameObject;
+                PLAYERSTATE = PlayerState.Running;
 
-            //playerRigidBody.isKinematic = false;
-            PLAYERSTATE = PlayerState.onRamp;
+                //playerRigidBody.isKinematic = false;
+                PLAYERSTATE = PlayerState.onRamp;
+                break;
+            case "Ramp Medium":
+                rampObject = collision.collider.gameObject;
+                PLAYERSTATE = PlayerState.Running;
 
-
-        }  
-        if(collision.collider.tag == "Eagle")
-        {
-            
-            //eagleSpawnPoint.transform.position = new Vector3(0, 4.63f, -0.12f);
-            playerRigidBody.useGravity = false;
-            p_hanging = true;
-            p_running = false;
-            playerAnimator.SetBool("Hanging", p_hanging);
-            playerAnimator.SetBool("Running", p_running);
-            eagleSpawnPoint.transform.localPosition = new Vector3(0, 4.63f, -0.12f);
-            playerRigidBody.velocity = new Vector3(0, 0.4f, 8);
-            playerRigidBody.AddForce(playerRigidBody.velocity, ForceMode.VelocityChange);
-            StartCoroutine(FallAfterFourSeconds());
-
+                //playerRigidBody.isKinematic = false;
+                PLAYERSTATE = PlayerState.onRamp;
+                break;
+            case "Eagle":
+                playerRigidBody.useGravity = false;
+                p_hanging = true;
+                p_running = false;
+                playerAnimator.SetBool("Hanging", p_hanging);
+                playerAnimator.SetBool("Running", p_running);
+                eagleSpawnPoint.transform.localPosition = new Vector3(0, 4.63f, -0.12f);
+                playerRigidBody.velocity = new Vector3(0, 0.4f, 8);
+                playerRigidBody.AddForce(playerRigidBody.velocity, ForceMode.VelocityChange);
+                StartCoroutine(FallAfterFourSeconds());
+                break;
+            default:
+                break;
         }
     }
 
@@ -300,6 +311,7 @@ public class PlayerController : MonoBehaviour
     //    yield return new WaitForSecondsRealtime(0.3f);
     //    speed -= 4;
     //}
+
     IEnumerator CoolDown()
     {
         yield return new WaitForSecondsRealtime(0.3f);
@@ -312,6 +324,26 @@ public class PlayerController : MonoBehaviour
         playerRigidBody.velocity = new Vector3(0, -4f, ZForce);
         playerRigidBody.AddForce(playerRigidBody.velocity, ForceMode.VelocityChange);
     }
+
+    public void InitialLevelSetup()
+    {
+        Time.timeScale = 1;
+        isTransitioning = false;
+        playerRigidBody.isKinematic = true;
+        //DestroyPreviousLevelObjects();
+        SpawnLevelPrefabs.Instance.Invoke("Start", 0.1f);
+        StartCoroutine(SetPlayerAndCameraToInitialPositions());
+    }
+
+    IEnumerator SetPlayerAndCameraToInitialPositions()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        player.transform.position = intitalPosition;
+        player.transform.rotation = initialRotation;
+        Camera.main.transform.position = CameraManager.Instance.initialPosition;
+        UIManager.Instance.GameStartCanvas.SetActive(true);
+    }
+
 
     IEnumerator FallFromEagle()
     {

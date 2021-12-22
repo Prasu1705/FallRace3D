@@ -22,7 +22,7 @@ public class MoveOnPath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed = Random.Range(9, 14);
+        speed = Random.Range(9, 13);
         float distance = Vector3.Distance(pathToFollow.enemy_path[currentWayPointID].position, transform.position);
         transform.position = Vector3.MoveTowards(transform.position, pathToFollow.enemy_path[currentWayPointID].position, Time.deltaTime * speed);
 
