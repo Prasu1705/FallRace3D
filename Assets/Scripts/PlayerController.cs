@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        //Time.timeScale = 0;
+        
     }
     void Start()
     {
@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator StartGame()
     {
-       
+        
         yield return null;
         player = PlayerManager.Instance.playerObject;
         playerRigidBody = player.GetComponent<Rigidbody>();
@@ -116,11 +116,25 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("Falling", p_falling);
         hasStarted = true;
         inputEnabled = true;
-        
+        Time.timeScale = 0;
+        StartCoroutine(CheckLowestYPositionOfPlatform());
+    }
+    IEnumerator CheckLowestYPositionOfPlatform()
+    {
+        GameObject[] GroundObjects = GameObject.FindGameObjectsWithTag("Ground");
+        List<float> GroundYPositions = new List<float>();
+        for (int i = 0; i < GroundObjects.Length; i++)
+        {
+            Debug.Log(GroundObjects[i]);
+            GroundYPositions.Add(GroundObjects[i].transform.position.y);
+        }
+        LowestYPosition = Mathf.Min(GroundYPositions.ToArray());
+        yield return null;
     }
 
-    // Update is called once per frame
-    void Update()
+
+// Update is called once per frame
+void Update()
     {
        
 
@@ -164,16 +178,8 @@ public class PlayerController : MonoBehaviour
 
     void OnTap()
     {
-        Time.timeScale = 1;
+        GameManager.Instance.CURRENTGAMEPLAYSTATE = GameManager.GamePlayState.Game;
         UIManager.Instance.GameStartCanvas.SetActive(false);
-        GameObject[] GroundObjects = GameObject.FindGameObjectsWithTag("Ground");
-        List<float> GroundYPositions = new List<float>();
-        for (int i = 0; i < GroundObjects.Length; i++)
-        {
-            Debug.Log(GroundObjects[i]);
-            GroundYPositions.Add(GroundObjects[i].transform.position.y);
-        }
-        LowestYPosition = Mathf.Min(GroundYPositions.ToArray());
         mZCoord = Camera.main.WorldToScreenPoint(player.transform.position).z;
         // Store offset = gameobject world pos - mouse world pos
         mOffset = player.transform.position - GetMouseAsWorldPoint();
@@ -194,19 +200,18 @@ public class PlayerController : MonoBehaviour
 
     public void Restart()
     {
-        p_falling = false;
-        p_running = true;
-        playerAnimator.SetBool("Falling", p_falling);
-        playerAnimator.SetBool("Running", p_running);
+        PLAYERSTATE = PlayerState.Running;
+        
         GameManager.Instance.CURRENTGAMEPLAYSTATE = GameManager.GamePlayState.Restart;
     }
 
     public void InitialLevelSetup()
     {
         Time.timeScale = 1;
+        
         isTransitioning = false;
         //enableRotation = false;
-        playerRigidBody.isKinematic = true;
+        playerRigidBody.isKinematic = false;
         //DestroyPreviousLevelObjects();
         SpawnLevelPrefabs.Instance.Invoke("Start", 0.1f);
         StartCoroutine(SetPlayerAndCameraToInitialPositions());
@@ -374,7 +379,9 @@ public class PlayerController : MonoBehaviour
         player.transform.position = intitalPosition;
         player.transform.rotation = initialRotation;
         Camera.main.transform.position = CameraManager.Instance.initialPosition;
+        UIManager.Instance.GameOverCanvas.SetActive(false);
         UIManager.Instance.GameStartCanvas.SetActive(true);
+
     }
 
 
