@@ -114,9 +114,11 @@ public class PlayerController : MonoBehaviour
         
         playerAnimator.SetBool("Running", p_running);
         playerAnimator.SetBool("Falling", p_falling);
+        isRestarting = false;
         hasStarted = true;
         inputEnabled = true;
         Time.timeScale = 0;
+
         StartCoroutine(CheckLowestYPositionOfPlatform());
     }
     IEnumerator CheckLowestYPositionOfPlatform()
