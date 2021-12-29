@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public PlayerController PlayerController;
+    public EnemyController enemyController; 
 
     public enum GamePlayState { Game, Lose, Win, Restart };
 
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
                     PlayerController.isLost = false;
                     PlayerController.isRestarting = true;
                     //UIManager.Instance.GameOverCanvas.SetActive(false);
+                    enemyController.InitialLevelSetup();
                     PlayerController.InitialLevelSetup();
                 }
                 break;
@@ -68,7 +70,8 @@ public class GameManager : MonoBehaviour
     IEnumerator GameCompleted()
     {
         //knife.rb.isKinematic = true;
-        LevelManager.Instance.LEVEL += 1;
+        //LevelManager.Instance.LEVEL += 1;
+        enemyController.InitialLevelSetup();
         PlayerController.InitialLevelSetup();
         yield return null;
 

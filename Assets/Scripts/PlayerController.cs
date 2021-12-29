@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject player;
+    [HideInInspector] public GameObject player;
     public float horizontalDirection;
     public Rigidbody playerRigidBody;
     public float speed, moveSpeed;
@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour
     public bool isWon;
 
     [HideInInspector] private float LowestYPosition;
+    [HideInInspector] private GameObject finishLine;
+
+    public EnemyController enemyController;
 
     public PlayerState PLAYERSTATE { get { return playerState; } set { playerState = value; switchPlayerState(); } }
 
@@ -107,6 +110,7 @@ public class PlayerController : MonoBehaviour
         playerRigidBody = player.GetComponent<Rigidbody>();
         intitalPosition = player.transform.position;
         initialRotation = player.transform.rotation;
+        finishLine = GameObject.FindGameObjectWithTag("Finish");
         InputManager.Instance.OnTap += OnTap;
         InputManager.Instance.OnHold += onHold;
         //playerRigidBody.isKinematic = false;
@@ -127,8 +131,9 @@ public class PlayerController : MonoBehaviour
         List<float> GroundYPositions = new List<float>();
         for (int i = 0; i < GroundObjects.Length; i++)
         {
-            Debug.Log(GroundObjects[i]);
+            //Debug.Log(GroundObjects[i].transform.position.y);
             GroundYPositions.Add(GroundObjects[i].transform.position.y);
+            Debug.Log(Mathf.Min(GroundYPositions.ToArray()));
         }
         LowestYPosition = Mathf.Min(GroundYPositions.ToArray());
         yield return null;
@@ -157,9 +162,13 @@ void Update()
 
             //transform.Translate(-transform.up * speed * Time.deltaTime);
         }
-        if(transform.position.y < LowestYPosition)
+        if(transform.position.y < LowestYPosition - 5)
         {
             GameManager.Instance.CURRENTGAMEPLAYSTATE = GameManager.GamePlayState.Lose;
+        }
+        if (transform.position.z > finishLine.transform.position.z)
+        {
+            GameManager.Instance.CURRENTGAMEPLAYSTATE = GameManager.GamePlayState.Win;
         }
 
 
@@ -215,8 +224,9 @@ void Update()
         //enableRotation = false;
         playerRigidBody.isKinematic = false;
         //DestroyPreviousLevelObjects();
-        SpawnLevelPrefabs.Instance.Invoke("Start", 0.1f);
         StartCoroutine(SetPlayerAndCameraToInitialPositions());
+        SpawnLevelPrefabs.Instance.Invoke("Start", 0.1f);
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -228,14 +238,14 @@ void Update()
                 break;
             case "Ramp Small":
                 rampObject = collision.collider.gameObject;
-                PLAYERSTATE = PlayerState.Running;
+                //PLAYERSTATE = PlayerState.Running;
 
                 //playerRigidBody.isKinematic = false;
                 PLAYERSTATE = PlayerState.onRamp;
                 break;
             case "Ramp Medium":
                 rampObject = collision.collider.gameObject;
-                PLAYERSTATE = PlayerState.Running;
+                //PLAYERSTATE = PlayerState.Running;
 
                 //playerRigidBody.isKinematic = false;
                 PLAYERSTATE = PlayerState.onRamp;
@@ -341,7 +351,7 @@ void Update()
     {
         if(other.tag == "SpeedBoost")
         {
-            ZForce += 10;
+            ZForce += 5;
             StartCoroutine(CoolDown());
             //playerRigidBody.useGravity = false;
             //Destroy(other.gameObject);
@@ -362,8 +372,8 @@ void Update()
 
     IEnumerator CoolDown()
     {
-        yield return new WaitForSecondsRealtime(0.3f);
-        ZForce -= 10;
+        yield return new WaitForSecondsRealtime(0.2f);
+        ZForce -= 5;
     }
 
     IEnumerator PlayerFall()
@@ -378,12 +388,14 @@ void Update()
     IEnumerator SetPlayerAndCameraToInitialPositions()
     {
         yield return new WaitForSecondsRealtime(0.1f);
+        playerRigidBody.velocity = Vector3.zero;
         player.transform.position = intitalPosition;
         player.transform.rotation = initialRotation;
         Camera.main.transform.position = CameraManager.Instance.initialPosition;
         UIManager.Instance.GameOverCanvas.SetActive(false);
         UIManager.Instance.GameStartCanvas.SetActive(true);
-
+        isTransitioning = false;
+        isRestarting = false;
     }
 
 

@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public MoveOnPath moveOnPath;
     public GameObject Enemy;
     public float horizontalDirection;
     public Rigidbody playerRigidBody;
+    private Vector3 intitalPosition;
+    private Quaternion initialRotation;
     public float speed, moveSpeed;
     private bool hasStarted, inputEnabled;
     [HideInInspector] public GameObject rampObject;
@@ -83,6 +86,8 @@ public class EnemyController : MonoBehaviour
         yield return null;
         //player = PlayerManager.Instance.playerObject;
         playerRigidBody = Enemy.GetComponent<Rigidbody>();
+        intitalPosition = Enemy.transform.position;
+        initialRotation = Enemy.transform.rotation;
         //playerRigidBody.isKinematic = false;
         ENEMYSTATE = EnemyState.Running;
 
@@ -280,6 +285,29 @@ public class EnemyController : MonoBehaviour
         //playerRigidBody.AddForce(playerRigidBody.velocity, ForceMode.VelocityChange);
     }
 
+    public void InitialLevelSetup()
+    {
+        Time.timeScale = 1;
+        moveOnPath.currentWayPointID = 0;
+        //isTransitioning = false;
+        //enableRotation = false;
+        playerRigidBody.isKinematic = false;
+        //DestroyPreviousLevelObjects();
+        //SpawnLevelPrefabs.Instance.Invoke("Start", 0.1f);
+        StartCoroutine(SetEnemyToInitialPosition());
+    }
+
+    IEnumerator SetEnemyToInitialPosition()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        Enemy.transform.position = intitalPosition;
+        Enemy.transform.rotation = initialRotation;
+        //Camera.main.transform.position = CameraManager.Instance.initialPosition;
+        //UIManager.Instance.GameOverCanvas.SetActive(false);
+        //UIManager.Instance.GameStartCanvas.SetActive(true);
+        //isTransitioning = false;
+        //isRestarting = false;
+    }
     //IEnumerator FallFromEagle()
     //{
     //    yield return null;
