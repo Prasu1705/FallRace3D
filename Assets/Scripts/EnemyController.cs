@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     public MoveOnPath moveOnPath;
     public GameObject Enemy;
     public float horizontalDirection;
-    public Rigidbody playerRigidBody;
+    public Rigidbody EnemyRigidBody;
     private Vector3 intitalPosition;
     private Quaternion initialRotation;
     public float speed, moveSpeed;
@@ -85,7 +85,7 @@ public class EnemyController : MonoBehaviour
     {
         yield return null;
         //player = PlayerManager.Instance.playerObject;
-        playerRigidBody = Enemy.GetComponent<Rigidbody>();
+        EnemyRigidBody = Enemy.GetComponent<Rigidbody>();
         intitalPosition = Enemy.transform.position;
         initialRotation = Enemy.transform.rotation;
         //playerRigidBody.isKinematic = false;
@@ -159,7 +159,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Ground")
+        if (collision.collider.tag == "Ground" || collision.collider.tag == "MainGround")
         {
             //playerRigidBody.isKinematic = false;
             ENEMYSTATE = EnemyState.Running;
@@ -202,7 +202,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.tag == "Ground")
+        if (collision.collider.tag == "Ground" || collision.collider.tag == "MainGround")
         {
               ENEMYSTATE = EnemyState.Fall;
         }
@@ -214,7 +214,7 @@ public class EnemyController : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.collider.tag == "Ground")
+        if (collision.collider.tag == "Ground" || collision.collider.tag == "MainGround")
         {
             e_running = true;
             //playerRigidBody.isKinematic = false;
@@ -291,7 +291,7 @@ public class EnemyController : MonoBehaviour
         moveOnPath.currentWayPointID = 0;
         //isTransitioning = false;
         //enableRotation = false;
-        playerRigidBody.isKinematic = false;
+        EnemyRigidBody.isKinematic = false;
         //DestroyPreviousLevelObjects();
         //SpawnLevelPrefabs.Instance.Invoke("Start", 0.1f);
         StartCoroutine(SetEnemyToInitialPosition());

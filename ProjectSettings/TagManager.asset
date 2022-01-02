@@ -12,6 +12,8 @@ TagManager:
   - Eagle
   - Eagleflying
   - Platform
+  - MainGround
+  - Enemy
   layers:
   - Default
   - TransparentFX

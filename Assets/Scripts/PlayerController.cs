@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] private GameObject finishLine;
 
     public EnemyController enemyController;
+    //public FinalPosition finalPosition;
 
     public PlayerState PLAYERSTATE { get { return playerState; } set { playerState = value; switchPlayerState(); } }
 
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.speedBoost:
                 break;
             case PlayerState.onRamp:
+
                 playerRigidBody.AddForce(0, 0.43f, 1, ForceMode.VelocityChange);
                 //speed += 4;
                 //StartCoroutine(DecreaseSpeedAfterFewSeconds());
@@ -111,6 +113,7 @@ public class PlayerController : MonoBehaviour
         intitalPosition = player.transform.position;
         initialRotation = player.transform.rotation;
         finishLine = GameObject.FindGameObjectWithTag("Finish");
+        //finalPosition.RunnerObjects.TrimExcess();
         InputManager.Instance.OnTap += OnTap;
         InputManager.Instance.OnHold += onHold;
         //playerRigidBody.isKinematic = false;
@@ -166,10 +169,10 @@ void Update()
         {
             GameManager.Instance.CURRENTGAMEPLAYSTATE = GameManager.GamePlayState.Lose;
         }
-        if (transform.position.z > finishLine.transform.position.z)
-        {
-            GameManager.Instance.CURRENTGAMEPLAYSTATE = GameManager.GamePlayState.Win;
-        }
+        //if (transform.position.z > finishLine.transform.position.z)
+        //{
+        //    GameManager.Instance.CURRENTGAMEPLAYSTATE = GameManager.GamePlayState.Win;
+        //}
 
 
        
@@ -218,11 +221,12 @@ void Update()
 
     public void InitialLevelSetup()
     {
-        Time.timeScale = 1;
-        
+        Time.timeScale = 0;
+        playerRigidBody.velocity = Vector3.zero;
         isTransitioning = false;
         //enableRotation = false;
         playerRigidBody.isKinematic = false;
+        DestroyPreviousLevelObjects();
         //DestroyPreviousLevelObjects();
         StartCoroutine(SetPlayerAndCameraToInitialPositions());
         SpawnLevelPrefabs.Instance.Invoke("Start", 0.1f);
@@ -234,6 +238,9 @@ void Update()
         switch(collision.collider.tag)
         {
             case "Ground":
+                PLAYERSTATE = PlayerState.Running;
+                break;
+            case "MainGround":
                 PLAYERSTATE = PlayerState.Running;
                 break;
             case "Ramp Small":
@@ -273,9 +280,46 @@ void Update()
         StartCoroutine(FallFromEagle());
     }
 
+    public void DestroyPreviousLevelObjects()
+    {
+        GameObject[] destroyPlatforms = GameObject.FindGameObjectsWithTag("Ground");
+        GameObject[] destroySmallRamps = GameObject.FindGameObjectsWithTag("Ramp Small");
+        GameObject[] destroyMediumRamps = GameObject.FindGameObjectsWithTag("Ramp Medium");
+        GameObject[] destroySpeedBoost = GameObject.FindGameObjectsWithTag("SpeedBoost");
+        GameObject[] destroyEaglePower = GameObject.FindGameObjectsWithTag("Eagleflying");
+        GameObject[] destroyFinishLine = GameObject.FindGameObjectsWithTag("Finish");
+
+        foreach (GameObject Platforms in destroyPlatforms)
+        {
+
+            Platforms.SetActive(false);
+        }
+
+        foreach (GameObject SmallRamps in destroySmallRamps)
+        {
+            SmallRamps.SetActive(false);
+        }
+        foreach (GameObject MediumRamps in destroyMediumRamps)
+        {
+            MediumRamps.SetActive(false);
+        }
+        foreach (GameObject SpeedBoost in destroySpeedBoost)
+        {
+            SpeedBoost.SetActive(false);
+        }
+        foreach (GameObject EaglePower in destroyEaglePower)
+        {
+            EaglePower.SetActive(false);
+        }
+        foreach (GameObject FinishLine in destroyFinishLine)
+        {
+            FinishLine.SetActive(false);
+        }
+    }
+
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.tag == "Ground")
+        if (collision.collider.tag == "Ground" || collision.collider.tag == "MainGround")
         {
             //playerRigidBody.isKinematic = true;
             if(p_hanging == true)
@@ -301,7 +345,7 @@ void Update()
     }
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.collider.tag == "Ground")
+        if (collision.collider.tag == "Ground" || collision.collider.tag == "MainGround")
         {
             if(p_hanging == true)
             {
@@ -351,7 +395,7 @@ void Update()
     {
         if(other.tag == "SpeedBoost")
         {
-            ZForce += 5;
+            ZForce += 10;
             StartCoroutine(CoolDown());
             //playerRigidBody.useGravity = false;
             //Destroy(other.gameObject);
@@ -372,8 +416,8 @@ void Update()
 
     IEnumerator CoolDown()
     {
-        yield return new WaitForSecondsRealtime(0.2f);
-        ZForce -= 5;
+        yield return new WaitForSecondsRealtime(0.35f);
+        ZForce -= 10;
     }
 
     IEnumerator PlayerFall()

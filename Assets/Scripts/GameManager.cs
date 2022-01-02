@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public PlayerController PlayerController;
-    public EnemyController enemyController; 
+    public EnemyController enemyController;
+    public FinalPosition finalPosition;
 
     public enum GamePlayState { Game, Lose, Win, Restart };
 
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
             case GamePlayState.Game:
                 {
                     Time.timeScale = 1;
+                    //finalPosition.RunnerObjects.Clear();
                 }
                 break;
             case GamePlayState.Restart:
@@ -48,8 +50,10 @@ public class GameManager : MonoBehaviour
                     PlayerController.isLost = false;
                     PlayerController.isRestarting = true;
                     //UIManager.Instance.GameOverCanvas.SetActive(false);
+                    
                     enemyController.InitialLevelSetup();
                     PlayerController.InitialLevelSetup();
+                    //PlayerController.Invoke("Start", 0.1f);
                 }
                 break;
             case GamePlayState.Lose:
@@ -71,15 +75,21 @@ public class GameManager : MonoBehaviour
     {
         //knife.rb.isKinematic = true;
         //LevelManager.Instance.LEVEL += 1;
+        //PlayerController.Invoke("Start", 0.1f);
+        finalPosition.Invoke("Start",0.1f);
         enemyController.InitialLevelSetup();
         PlayerController.InitialLevelSetup();
+        
+
         yield return null;
 
     }
 
     IEnumerator GameFailed()
     {
+        finalPosition.Invoke("Start", 0.1f);
         PlayerController.isTransitioning = true;
+        
         UIManager.Instance.GameOverCanvas.SetActive(true);
         Time.timeScale = 0;
         yield return null;
