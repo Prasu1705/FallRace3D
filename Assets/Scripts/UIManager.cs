@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     public GameObject GameOverCanvas;
     public GameObject GameStartCanvas;
+    public GameObject RaceLostCanvas;
+    public GameObject RaceWonCanvas;
 
     public Text Score;
     public Text Level;
@@ -27,14 +29,14 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Score.text = "Score :" + PlayerData.Instance.SCORE.ToString();
-        Level.text = "Level :" + LevelManager.Instance.LEVEL.ToString();
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        Score.text = "Score :" + PlayerData.Instance.SCORE.ToString();
+        Level.text = "Level :" + LevelManager.Instance.LEVEL.ToString();
     }
 
 

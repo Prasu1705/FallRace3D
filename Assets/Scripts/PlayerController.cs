@@ -288,6 +288,7 @@ void Update()
         GameObject[] destroySpeedBoost = GameObject.FindGameObjectsWithTag("SpeedBoost");
         GameObject[] destroyEaglePower = GameObject.FindGameObjectsWithTag("Eagleflying");
         GameObject[] destroyFinishLine = GameObject.FindGameObjectsWithTag("Finish");
+        GameObject[] destroyGoldCoins = GameObject.FindGameObjectsWithTag("coin");
 
         foreach (GameObject Platforms in destroyPlatforms)
         {
@@ -314,6 +315,10 @@ void Update()
         foreach (GameObject FinishLine in destroyFinishLine)
         {
             FinishLine.SetActive(false);
+        }
+        foreach (GameObject GoldCoins in destroyGoldCoins)
+        {
+            GoldCoins.SetActive(false);
         }
     }
 
@@ -407,6 +412,10 @@ void Update()
             SpawnedEagle.transform.SetParent(eagleSpawnPoint.transform);
             SpawnedEagle.SetActive(true);
         }
+        if(other.tag == "coin")
+        {
+            PlayerData.Instance.SCORE += 1;
+        }
     }
     //IEnumerator DecreaseSpeedAfterFewSeconds()
     //{
@@ -436,6 +445,8 @@ void Update()
         player.transform.position = intitalPosition;
         player.transform.rotation = initialRotation;
         Camera.main.transform.position = CameraManager.Instance.initialPosition;
+        UIManager.Instance.RaceLostCanvas.SetActive(false);
+        UIManager.Instance.RaceWonCanvas.SetActive(false);
         UIManager.Instance.GameOverCanvas.SetActive(false);
         UIManager.Instance.GameStartCanvas.SetActive(true);
         isTransitioning = false;

@@ -10,7 +10,7 @@ public class FinalPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RunnerObjects.Clear();
+        //RunnerObjects.Clear();
         //RunnerObjects.Capacity = 0;
         //for (int i = 0; i < RunnerObjects.Count; i++)
         //{
@@ -18,7 +18,7 @@ public class FinalPosition : MonoBehaviour
         //    //Debug.Log("Count:" + RunnerObjects.Count);
         //}
         //RunnerObjects.TrimExcess();
-        Debug.Log(RunnerObjects.Capacity);
+        //Debug.Log(RunnerObjects.Capacity);
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class FinalPosition : MonoBehaviour
             if(RunnerObjects.IndexOf(other.gameObject)+1 == 1)
             {
                 
-                GameManager.Instance.CURRENTGAMEPLAYSTATE = GameManager.GamePlayState.Win;
+                //GameManager.Instance.CURRENTGAMEPLAYSTATE = GameManager.GamePlayState.Win;
                 //for(int i = 0; i < RunnerObjects.Count; i++)
                 //{
                 //    RunnerObjects.RemoveAt(i);
@@ -45,13 +45,17 @@ public class FinalPosition : MonoBehaviour
                 //}
                 index = 0;
                 RunnerObjects.Clear();
+                UIManager.Instance.RaceWonCanvas.SetActive(true);
+                Time.timeScale = 0;
             }
             else
             {
                 RunnerObjects.Clear();
                 index = 0;
-                GameManager.Instance.CURRENTGAMEPLAYSTATE = GameManager.GamePlayState.Lose;
-               
+                UIManager.Instance.RaceLostCanvas.SetActive(true);
+                Time.timeScale = 0;
+                //GameManager.Instance.CURRENTGAMEPLAYSTATE = GameManager.GamePlayState.Lose;
+
             }
         }
         if(other.tag == "Enemy")
